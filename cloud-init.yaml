@@ -1,0 +1,17 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - python3-pip
+  - nvme-cli
+
+users:
+  - name: ec2-user
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCuxKkxvmiQ3TZjdnK0UoeyaxHqKeLXPtFXcdz5rE9qXfj39/NzQ/V8dGGsOo4+U3kRq2P2V7jNL43YDxWnIXte2/xgjPsRTkK5Bj/94JZYz1POngoLi6MNgLgfLUTC4djARtwzbdVMJs4+2b6FG9KnolfzR3sLMv6beDo88tmSz8mY867XdkRzuaHIzVvs9FzSacIuJ0An8KrMADdX0uADNTIiUNg6DMA0uJlcAjEhL1pseFcvgARVIm1hDMoySLwZj6IoyVZDmFa18SluWx27414cRHKGyiwVyD3rfqh/fmfWQQeN9PPtxVl1bZao2NJFCfE8KjREBQxs/cjew7BYIip+3fQJa3N7hIPlXhPg1b5hjNfBErGldR+FdB/lIAH7ai1S4pY2tkJWos6y0R2fj5MQtvsGJGTzejtud3RCXacs6Pd53DXjkcR79XKcvK+Gr3su3inQ4qogJvdIuNgibkjxv6+q6kXmW2sef4EEWmGSMumOImnpJwhL9vF6bus= che@wolf
+
+runcmd:
+  - amazon-linux-extras enable ansible2 && yum clean metadata && yum -y update
+  - yum -y install ansible

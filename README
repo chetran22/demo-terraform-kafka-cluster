@@ -1,0 +1,6 @@
+for i in kf wk zk; do
+1) bash 0_create_bucket.sh ada-nonprod.kf/us-east-1/dev1
+2) terraform init -backend-config=ada-nonprod.kf/us-east-1/dev1/backend.tfvars -reconfigure
+3) terraform plan -var-file ada-nonprod.kf/us-east-1/dev1/terraform.tfvars
+4) terraform apply -auto-approve -var-file ada-nonprod.kf/us-east-1/dev1/terraform.tfvars
+5) terraform destroy -auto-approve -var-file ada-nonprod.kf/us-east-1/dev1/terraform.tfvars
